@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Comment } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 
 const PortfolioComments = () => {
   const { user } = useAuth();
@@ -30,7 +30,7 @@ const PortfolioComments = () => {
     <Card className="w-full max-w-2xl mx-auto mt-4">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Comment className="h-5 w-5" />
+          <MessageSquare className="h-5 w-5" />
           Add Review Comment
         </CardTitle>
       </CardHeader>
