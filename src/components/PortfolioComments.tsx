@@ -30,11 +30,6 @@ const PortfolioComments = () => {
   };
 
   const handleReaction = (commentId: number, type: 'thumbsUp' | 'thumbsDown') => {
-    // Only allow admins and superadmins to add reactions
-    if (!['admin', 'superadmin'].includes(user?.role || '')) {
-      return;
-    }
-    
     setComments(comments.map(comment => {
       if (comment.id === commentId) {
         return {
@@ -82,20 +77,20 @@ const PortfolioComments = () => {
             <div key={comment.id} className="bg-muted p-4 rounded-lg space-y-2">
               <p>{comment.text}</p>
               <div className="flex gap-4">
-                <div
-                  className={`flex items-center gap-1 text-sm ${canComment ? 'cursor-pointer hover:text-foreground' : ''} text-muted-foreground`}
-                  onClick={() => canComment && handleReaction(comment.id, 'thumbsUp')}
+                <button
+                  onClick={() => handleReaction(comment.id, 'thumbsUp')}
+                  className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
                 >
                   <ThumbsUp className="h-4 w-4" />
                   <span>{comment.reactions.thumbsUp}</span>
-                </div>
-                <div
-                  className={`flex items-center gap-1 text-sm ${canComment ? 'cursor-pointer hover:text-foreground' : ''} text-muted-foreground`}
-                  onClick={() => canComment && handleReaction(comment.id, 'thumbsDown')}
+                </button>
+                <button
+                  onClick={() => handleReaction(comment.id, 'thumbsDown')}
+                  className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
                 >
                   <ThumbsDown className="h-4 w-4" />
                   <span>{comment.reactions.thumbsDown}</span>
-                </div>
+                </button>
               </div>
             </div>
           ))}
